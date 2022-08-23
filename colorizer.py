@@ -80,8 +80,10 @@ colors = [
 for c in colors:
     webhexcolor = c['hex_code']
     im = Image.new("RGB", (100,100), webhexcolor)
-    image_name = f"{c['name']}_{c['hex_code']}.png"
+    hex_code = c['hex_code'].split('#')[1]
+    image_name = f"{c['name']}_{hex_code}.png"
     im.save(image_name)
+
     # Make circular
     im = Image.open(image_name)
     bigsize = (im.size[0] * 3, im.size[1] * 3)
@@ -91,3 +93,5 @@ for c in colors:
     mask = mask.resize(im.size, Image.ANTIALIAS)
     im.putalpha(mask)
     im.save(image_name)
+
+    
